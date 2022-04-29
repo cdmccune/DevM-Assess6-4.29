@@ -33,8 +33,8 @@ app.get('/api/robots', (req, res) => {
         res.status(200).send(botsArr)
     } catch (error) {
         console.log('ERROR GETTING BOTS', error)
-        res.sendStatus(400)
         rollbar.warning("Fix your dang display robots")
+        res.sendStatus(400)
     }
 })
 
@@ -43,8 +43,8 @@ app.get('/api/robots/five', (req, res) => {
         let shuffled = shuffleArray(bots)
         let choices = shuffled.slice(0, 5)
         let compDuo = shuffled.slice(6, 8)
-        res.status(200).send({choices, compDuo})
         rollbar.log("People are picking their team!")
+        res.status(200).send({choices, compDuo})
     } catch (error) {
         console.log('ERROR GETTING FIVE BOTS', error)
         res.sendStatus(400)
@@ -75,8 +75,8 @@ app.post('/api/duel', (req, res) => {
             rollbar.log("AI has finally become the master race")
         } else {
             playerRecord.losses++
-            res.status(200).send('You won!')
             rollbar.log("humanity has held off AI yet again, though the score counter doesn't show it ;)")
+            res.status(200).send('You won!')
         }
     } catch (error) {
         console.log('ERROR DUELING', error)
