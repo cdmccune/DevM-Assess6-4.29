@@ -34,13 +34,14 @@ test("Draw button displays the bots", async ()=> {
 })
 
 const checkAddToDuo = async (driver) =>  {
-    // await driver.findElement(By.xpath("//button[@class='bot-btn']")).click()
-    // await driver.findElement(By.xpath('//[contains(@onclick,"chooseBot")]')).click()
-    // await driver.findElement(By.xpath("//[contains(@onclick,'submitData('chooseBot')')]"))
-    //a[contains(@onclick,'submitData('updateShortcodeAdmin')')]
-    // '//*[contains(@onclick, "chooseBot(4)")]'
+   await driver.findElement(By.id("draw")).click()
     await driver.sleep(1000)
-    const newDuo = await driver.findElement(By.xpath("//div[contains(@id,'player-duo')]/div[contains(@class,'bot-card outline')"))
+    await driver.findElement(By.xpath("//div[contains(@class,'bot-card outline')]/button")).click() 
+    await driver.sleep(1000)
+
+
+    
+    const newDuo = await driver.findElement(By.xpath("//div[contains(@id,'player-duo')]/div"))
     const displayed = newDuo.isDisplayed()
     expect(displayed).toBeTruthy()
 }
