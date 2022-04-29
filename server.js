@@ -18,6 +18,10 @@ var rollbar = new Rollbar({
 rollbar.log('Hello world!')
 
 
+app.get("/test", (req,res) => {
+    rollbar.log("This is a test")
+})
+
 app.get("/js", (req,res) => {
     res.sendFile(path.join(__dirname, '/public/index.js'))
     rollbar.log('js sent!')
