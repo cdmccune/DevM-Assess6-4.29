@@ -20,15 +20,19 @@ rollbar.log('Hello world!')
 
 app.get("/js", (req,res) => {
     res.sendFile(path.join(__dirname, '/public/index.js'))
+    rollbar.log("js sent!")
 })
 app.get("/styles", (req,res) => {
     res.sendFile(path.join(__dirname, '/public/index.css'))
+    rollbar.log("css sent!")
 })
 app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'))
+    rollbar.log("html sent!")
 })
 
 app.get('/api/robots', (req, res) => {
+    rollbar.warning("Fix your dang display robots")
     try {
         res.status(200).send(botsArr)
     } catch (error) {
@@ -36,6 +40,7 @@ app.get('/api/robots', (req, res) => {
         rollbar.warning("Fix your dang display robots")
         res.sendStatus(400)
     }
+    
 })
 
 app.get('/api/robots/five', (req, res) => {
