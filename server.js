@@ -20,19 +20,20 @@ rollbar.log('Hello world!')
 
 app.get("/js", (req,res) => {
     res.sendFile(path.join(__dirname, '/public/index.js'))
-    rollbar.log("js sent!")
+    rollbar.log('js sent!')
 })
 app.get("/styles", (req,res) => {
     res.sendFile(path.join(__dirname, '/public/index.css'))
-    rollbar.log("css sent!")
+    rollbar.log('css sent!')
 })
 app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'))
-    rollbar.log("html sent!")
+    rollbar.log('html sent!')
 })
 
 app.get('/api/robots', (req, res) => {
-    rollbar.warning("Fix your dang display robots")
+    rollbar.warning('Fix your dang display robots')
+    console.log('hi')
     try {
         res.status(200).send(botsArr)
     } catch (error) {
@@ -48,7 +49,7 @@ app.get('/api/robots/five', (req, res) => {
         let shuffled = shuffleArray(bots)
         let choices = shuffled.slice(0, 5)
         let compDuo = shuffled.slice(6, 8)
-        rollbar.log("People are picking their team!")
+        rollbar.log('People are picking their team!')
         res.status(200).send({choices, compDuo})
     } catch (error) {
         console.log('ERROR GETTING FIVE BOTS', error)
@@ -77,10 +78,10 @@ app.post('/api/duel', (req, res) => {
         if (compHealthAfterAttack > playerHealthAfterAttack) {
             playerRecord.losses++
             res.status(200).send('You lost!')
-            rollbar.log("AI has finally become the master race")
+            rollbar.log('AI has finally become the master race')
         } else {
             playerRecord.losses++
-            rollbar.log("humanity has held off AI yet again, though the score counter doesn't show it ;)")
+            rollbar.log('humanity has held off AI yet again, though the score counter doesnt show it ;)')
             res.status(200).send('You won!')
         }
     } catch (error) {
